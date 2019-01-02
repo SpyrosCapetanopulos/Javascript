@@ -2,58 +2,58 @@ var Calculadora = {
 	existeOp: "no",
 	ultOp: "",
 	cadena: "",
-  //2. Método de inicialización
-	init: function(){
+	//2. Método de inicialización
+	init: function () {
 		this.asignarEventoBtn('teclado')
 	},
 
-//3. Metodos tecla presionada reduzca su tamaño y vuelva a su forma original al soltarla.
-	asignarEventoBtn: function(selector){
+	//3. Metodos tecla presionada reduzca su tamaño y vuelva a su forma original al soltarla.
+	asignarEventoBtn: function (selector) {
 		var teclas = document.querySelectorAll('.' + selector + ' img')
-		for(i=0;i<teclas.length;i++){
+		for (i = 0; i < teclas.length; i++) {
 			teclas[i].onclick = this.eventoPresionoTecla
 			teclas[i].onmouseleave = this.eventoSoltoTecla
 		}
 	},
 
-//Metodo para llamar funcion de Botones
-	eventoPresionoTecla: function(event){
-		if(event.target.id == "1" || event.target.id == "2" || event.target.id == "3"
-			|| event.target.id == "4" || event.target.id == "5" || event.target.id == "6"
-			|| event.target.id == "7" || event.target.id == "8" || event.target.id == "9"
-			|| event.target.id == "0") {
+	//Metodo para llamar funcion de Botones
+	eventoPresionoTecla: function (event) {
+		if (event.target.id == "1" || event.target.id == "2" || event.target.id == "3" ||
+			event.target.id == "4" || event.target.id == "5" || event.target.id == "6" ||
+			event.target.id == "7" || event.target.id == "8" || event.target.id == "9" ||
+			event.target.id == "0") {
 			mostrarNumero(event.target.id)
 		}
 
-		if(event.target.id == "on"){
+		if (event.target.id == "on") {
 			limpiarPantalla()
 		}
 
-		if(event.target.id == "punto"){
+		if (event.target.id == "punto") {
 			agregarPunto()
 		}
 
-		if(event.target.id == "sign"){
+		if (event.target.id == "sign") {
 			agregarSigno()
 		}
 
-		if(event.target.id == "mas"){
+		if (event.target.id == "mas") {
 			sumarValores()
 		}
 
-		if(event.target.id == "menos"){
+		if (event.target.id == "menos") {
 			restarValores()
 		}
 
-		if(event.target.id == "por"){
+		if (event.target.id == "por") {
 			multiplicarValores()
 		}
 
-		if(event.target.id == "dividido"){
+		if (event.target.id == "dividido") {
 			dividirValores()
 		}
 
-		if(event.target.id == "igual"){
+		if (event.target.id == "igual") {
 			mostrarResultado()
 		}
 
@@ -61,7 +61,7 @@ var Calculadora = {
 
 	},
 
-	eventoSoltoTecla: function(event){
+	eventoSoltoTecla: function (event) {
 		aumentarTamanoTecla(event.target)
 	}
 
@@ -69,12 +69,12 @@ var Calculadora = {
 
 // 4 operaciones básicas
 // 4.1 Suma
-function sumarValores(){
-	if(Calculadora.cadena == 'XXX'){
+function sumarValores() {
+	if (Calculadora.cadena == 'XXX') {
 		Calculadora.cadena = ""
 		Calculadora.existeOp = "no"
 	}
-	if(Calculadora.existeOp == "no"){
+	if (Calculadora.existeOp == "no") {
 		Calculadora.cadena = document.getElementById('display').innerHTML
 		Calculadora.existeOp = "+"
 	} else {
@@ -84,12 +84,12 @@ function sumarValores(){
 	document.getElementById('display').innerHTML = ""
 }
 // 4.2 Resta
-function restarValores(){
-	if(Calculadora.cadena == 'XXX'){
+function restarValores() {
+	if (Calculadora.cadena == 'XXX') {
 		Calculadora.cadena = ""
 		Calculadora.existeOp = "no"
 	}
-	if(Calculadora.existeOp == "no"){
+	if (Calculadora.existeOp == "no") {
 		Calculadora.cadena = document.getElementById('display').innerHTML
 		Calculadora.existeOp = "-"
 	} else {
@@ -99,12 +99,12 @@ function restarValores(){
 	document.getElementById('display').innerHTML = ""
 }
 // 4.3 Multiplicación
-function multiplicarValores(){
-	if(Calculadora.cadena == 'XXX'){
+function multiplicarValores() {
+	if (Calculadora.cadena == 'XXX') {
 		Calculadora.cadena = ""
 		Calculadora.existeOp = "no"
 	}
-	if(Calculadora.existeOp == "no"){
+	if (Calculadora.existeOp == "no") {
 		Calculadora.cadena = document.getElementById('display').innerHTML
 		Calculadora.existeOp = "*"
 	} else {
@@ -114,12 +114,12 @@ function multiplicarValores(){
 	document.getElementById('display').innerHTML = ""
 }
 // 4.4 División
-function dividirValores(){
-	if(Calculadora.cadena == 'XXX'){
+function dividirValores() {
+	if (Calculadora.cadena == 'XXX') {
 		Calculadora.cadena = ""
 		Calculadora.existeOp = "no"
 	}
-	if(Calculadora.existeOp == "no"){
+	if (Calculadora.existeOp == "no") {
 		Calculadora.cadena = document.getElementById('display').innerHTML
 		Calculadora.existeOp = "/"
 	} else {
@@ -129,73 +129,72 @@ function dividirValores(){
 	document.getElementById('display').innerHTML = ""
 }
 
-function mostrarResultado(){
-	if(Calculadora.cadena == ""){
+function mostrarResultado() {
+	if (Calculadora.cadena == "") {
 		document.getElementById('display').innerHTML = "0"
-	} else if(Calculadora.cadena == 'XXX'){
-			Calculadora.cadena = document.getElementById('display').innerHTML + Calculadora.ultOp
-			document.getElementById('display').innerHTML = actualizarResultado()
-			Calculadora.cadena = 'XXX'
+	} else if (Calculadora.cadena == 'XXX') {
+		Calculadora.cadena = document.getElementById('display').innerHTML + Calculadora.ultOp
+		document.getElementById('display').innerHTML = actualizarResultado()
+		Calculadora.cadena = 'XXX'
 	} else {
-				Calculadora.cadena = Calculadora.cadena + Calculadora.existeOp + document.getElementById('display').innerHTML
-				Calculadora.ultOp = Calculadora.existeOp + document.getElementById('display').innerHTML
-				document.getElementById('display').innerHTML = actualizarResultado()
-				Calculadora.cadena = 'XXX'
+		Calculadora.cadena = Calculadora.cadena + Calculadora.existeOp + document.getElementById('display').innerHTML
+		Calculadora.ultOp = Calculadora.existeOp + document.getElementById('display').innerHTML
+		document.getElementById('display').innerHTML = actualizarResultado()
+		Calculadora.cadena = 'XXX'
 	}
 }
 
-function actualizarResultado(){
+function actualizarResultado() {
 	resultado = 0
 	resultado = eval(Calculadora.cadena)
-	return resultado.toPrecision(4)
+	return resultado.toPrecision(1)
 }
 
-function agregarSigno(){
+function agregarSigno() {
 	var pantalla = document.getElementById('display')
-	if(pantalla.innerHTML[0] = "-"){
-		pantalla.innerHTML[0] = ""
-	}
-	if(pantalla.innerHTML.length<7 && pantalla.innerHTML != "0"){
+	if (pantalla.innerHTML[0] == "-") {
+		pantalla.innerHTML = pantalla.innerHTML.substring(1);
+	} else if (pantalla.innerHTML.length < 7 && pantalla.innerHTML != "0") {
 		pantalla.innerHTML = "-" + pantalla.innerHTML
 	}
 }
 
-function agregarPunto(){
+function agregarPunto() {
 	var existe = "1"
 	var pantalla = document.getElementById('display')
-	for(i=0;i<pantalla.innerHTML.length;i++){
-		if (pantalla.innerHTML[i] == "."){
+	for (i = 0; i < pantalla.innerHTML.length; i++) {
+		if (pantalla.innerHTML[i] == ".") {
 			existe = "0"
 		}
 	}
-	if(existe == "1" && pantalla.innerHTML.length < 6){
+	if (existe == "1" && pantalla.innerHTML.length < 6) {
 		pantalla.innerHTML = pantalla.innerHTML + "."
 	}
 }
 
-function limpiarPantalla(){
+function limpiarPantalla() {
 	var pantalla = document.getElementById('display')
 	pantalla.innerHTML = "0"
 	Calculadora.cadena = ""
 	Calculadora.existeOp = "no"
 }
 
-function mostrarNumero(numero){
+function mostrarNumero(numero) {
 	var pantalla = document.getElementById('display')
-	if (pantalla.innerHTML.length < 8){
-		if(pantalla.innerHTML == "0" && numero != "0"){
+	if (pantalla.innerHTML.length < 8) {
+		if (pantalla.innerHTML == "0" && numero != "0") {
 			pantalla.innerHTML = numero
-		} else if(pantalla.innerHTML != "0"){
+		} else if (pantalla.innerHTML != "0") {
 			pantalla.innerHTML = pantalla.innerHTML + numero
 		}
 	}
 }
 
-function aumentarTamanoTecla(elementoDOM){
+function aumentarTamanoTecla(elementoDOM) {
 	elementoDOM.style.padding = "0px"
 }
 
-function disminuirTamanoTecla(elementoDOM){
+function disminuirTamanoTecla(elementoDOM) {
 	elementoDOM.style.padding = "1px"
 }
 
