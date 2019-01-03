@@ -1,3 +1,5 @@
+// Creado por Spyros Capetanopulos
+
 var Calculadora = {
 	existeOp: "no",
 	ultOp: "",
@@ -147,7 +149,7 @@ function mostrarResultado() {
 function actualizarResultado() {
 	resultado = 0
 	resultado = eval(Calculadora.cadena)
-	return resultado.toPrecision(1)
+	return resultado
 }
 
 function agregarSigno() {
